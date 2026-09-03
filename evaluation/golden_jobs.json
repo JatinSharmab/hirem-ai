@@ -1,0 +1,5 @@
+[
+  {"id":"1","mandatory":["Python","RAG"],"preferred":["AWS"]},
+  {"id":"2","mandatory":["PyTorch","Computer Vision"],"preferred":[]},
+  {"id":"3","mandatory":["LangGraph"],"preferred":["LangChain"]}
+]

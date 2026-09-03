@@ -1,0 +1,57 @@
+# Two public web services; the backend accepts application traffic only from the UI gateway.
+services:
+  - type: web
+    name: hireme-ai-api
+    runtime: python
+    plan: free
+    buildCommand: "pip install uv==0.12.22 && uv sync --frozen --no-dev"
+    startCommand: "uv run --no-sync python scripts/serve_api.py"
+    healthCheckPath: /ready
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.15
+      - key: APP_ENV
+        value: production
+      - key: APP_MODE
+        value: live
+      - key: API_GATEWAY_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_SSL
+        value: "true"
+      - key: DATABASE_SSL_CA
+        value: /etc/secrets/supabase-ca.crt
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: LLM_MODEL
+        value: gemini-3.1-flash-lite
+      - key: ENABLE_LIVE_JOB_DISCOVERY
+        value: "true"
+      - key: ENABLE_DEVELOPER_MODE
+        value: "false"
+      - key: AI_CALLS_PER_VISITOR
+        value: "10"
+      - key: AI_CALLS_PER_DAY
+        value: "100"
+      - key: WORKSPACE_TTL_HOURS
+        value: "24"
+  - type: web
+    name: hireme-ai-web
+    runtime: python
+    plan: free
+    buildCommand: "pip install -r apps/ui/requirements.txt"
+    startCommand: "streamlit run apps/ui/Home.py --server.address 0.0.0.0 --server.port $PORT --server.headless true"
+    healthCheckPath: /_stcore/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.15
+      - key: APP_ENV
+        value: production
+      - key: API_BASE_URL
+        sync: false
+      - key: API_GATEWAY_KEY
+        fromService:
+          type: web
+          name: hireme-ai-api
+          envVarKey: API_GATEWAY_KEY

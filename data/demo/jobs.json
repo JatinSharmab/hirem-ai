@@ -1,0 +1,8 @@
+[
+  {
+    "id":"demo-job-1","source":"demo","external_job_id":"SYN-001","title":"AI Engineer","company":"Synthetic Labs","location":"Gurugram","work_mode":"Hybrid","description":"Synthetic demo role requiring Python, FastAPI, RAG and LangGraph. AWS preferred.","canonical_url":null,"posted_at":null,"discovered_at":null,"last_verified_at":null,"status":"OPEN","verification_evidence":"Synthetic fixture; not a live job."
+  },
+  {
+    "id":"demo-job-2","source":"demo","external_job_id":"SYN-002","title":"Senior Computer Vision Engineer","company":"Example Vision Co","location":"Bengaluru","work_mode":"Onsite","description":"Synthetic senior role requiring computer vision, PyTorch and 5 years experience.","canonical_url":null,"posted_at":null,"discovered_at":null,"last_verified_at":null,"status":"OPEN","verification_evidence":"Synthetic fixture; not a live job."
+  }
+]

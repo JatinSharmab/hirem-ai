@@ -1,0 +1,13 @@
+{
+  "name": "Aarav Mehta (Synthetic Demo Candidate)",
+  "summary": "Synthetic AI engineer profile used only for HireMe AI demonstrations.",
+  "skills": ["Python", "FastAPI", "RAG", "LangGraph", "PostgreSQL", "Docker"],
+  "experience_years": 1.5,
+  "locations": ["Gurugram", "Remote"],
+  "facts": [
+    {"id":"FACT-001","category":"skill","subject":"Aarav Mehta","predicate":"used","value":"Python","source_section":"skills","source_text":"Python","confidence":1.0,"verified_by_user":true,"immutable":true},
+    {"id":"FACT-002","category":"skill","subject":"Aarav Mehta","predicate":"used","value":"FastAPI","source_section":"projects","source_text":"Built APIs with FastAPI","confidence":1.0,"verified_by_user":true,"immutable":true},
+    {"id":"FACT-003","category":"skill","subject":"Aarav Mehta","predicate":"used","value":"RAG","source_section":"projects","source_text":"Implemented retrieval-augmented generation","confidence":1.0,"verified_by_user":true,"immutable":true},
+    {"id":"FACT-004","category":"skill","subject":"Aarav Mehta","predicate":"used","value":"LangGraph","source_section":"projects","source_text":"Implemented workflow orchestration with LangGraph","confidence":1.0,"verified_by_user":true,"immutable":true}
+  ]
+}

@@ -1,0 +1,10 @@
+skills:
+  PostgreSQL: [Postgres, postgresql]
+  JavaScript: [JS, javascript]
+  Python: [python]
+  FastAPI: [fastapi]
+  LangGraph: [langgraph]
+  LangChain: [langchain]
+  RAG: [rag, retrieval augmented generation]
+  Docker: [docker]
+  AWS: [aws, amazon web services]

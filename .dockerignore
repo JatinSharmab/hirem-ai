@@ -1,0 +1,14 @@
+.git
+.venv
+.tools
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+__pycache__
+.pytest_cache
+.mypy_cache
+.ruff_cache
+*.dump
+*.log
+artifacts

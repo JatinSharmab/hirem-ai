@@ -1,0 +1,70 @@
+# Public portfolio review - 2026-10-02
+
+## Implemented
+
+- No login/signup. Random server-side visitor workspaces isolate stored jobs,
+  requirement caches and application records.
+- Production API gateway credential, HTTPS frontend API configuration, verified
+  PostgreSQL TLS and fail-closed startup checks. Credentials remain server-side.
+- Database-backed daily AI/ATS/import budgets, request/body/upload limits, PDF
+  page/text limits and DOCX archive expansion limits.
+- Expiring records, hourly production cleanup and clear-workspace action.
+- Public navigation hides developer screens. Privacy controls replace public
+  backend configuration. Responsive styles cover phone/tablet/laptop breakpoints.
+- Render API/UI blueprint, Linux container recipe, locked backend dependencies,
+  startup migrations and updated deployment instructions.
+
+## Verified locally
+
+- 60 automated tests pass, including Streamlit AppTest interactions, API flows,
+  gateway rejection, session validation, deletion isolation and upload rejection.
+- Ruff and formatting checks pass; mypy checks 97 source files.
+- Three deterministic synthetic evaluation cases pass. This is not a general
+  accuracy benchmark for Gemini.
+- Migration 0002 applied after backing up PostgreSQL; Alembic detects no drift.
+- Live PostgreSQL job persistence/cache, two-visitor isolation, expiry, deletion,
+  visitor quota and global quota checks pass with rollback of test writes.
+- Concurrent quota check admitted exactly 5 of 20 requests with global limit 5.
+- Pre-migration backup restored into a separate database, then upgraded to 0002
+  with no schema drift. Temporary restore database removed after verification.
+- Local API /health and /ready and Streamlit health each return HTTP 200.
+- Linux dependency image build passed. Testing the current source in that image
+  caught and fixed the startup script's application import path; migration startup,
+  /health and /ready then passed in the container.
+- A final image containing the updated source and Streamlit configuration passed
+  startup and both health checks without source mounts. Local tags:
+  hireme-ai:portfolio and hireme-ai:portfolio-checked. Test containers were removed.
+- No new paid Gemini calls were made for this release review. Earlier local live
+  workflow validation and the user's working Gemini setup remain distinct checks.
+
+Pytest reported an inability to write its optional cache under OneDrive; all
+tests completed successfully. Targeted security tests also passed with caching disabled.
+
+## Remaining release gates
+
+- Browser layout/interaction verification at the sizes listed in PUBLIC_DEPLOYMENT.md,
+  including actual iPad/iPhone Safari. No browser automation surface was available.
+- Hosted database TLS, hosted migration startup, live Gemini on the hosted app,
+  two-browser acceptance check and hosting-specific backup restoration.
+- Dependency vulnerability audit, broader security review and expected-traffic load
+  testing. Local automated checks are not a certification of production security.
+
+The project remains a bounded portfolio experience. Temporary sessions have no
+recovery, the full master-prompt product is not implemented, and the export flow
+produces verified extracts. Hosting has not been provisioned or published.
+
+## Hosting preparation update - 2026-10-02
+
+- Public GitHub repository created: https://github.com/JatinSharmab/hirem-ai.
+  It remains empty pending the user's choice about preserving earlier commit history.
+- Existing Supabase hireme-ai project selected by the user; it initially contained
+  no public application tables. Created a dedicated hireme_app database login.
+- Verified the session pooler's TLS certificate and hostname using Supabase's
+  officially published CA. Applied migrations 0001 and 0002; no schema drift.
+- Production startup now enables RLS on application tables and revokes privileges
+  from Supabase anon/authenticated roles. Verified this for all 17 tables.
+- Ran the production API locally against the hosted database: readiness, gateway
+  rejection, authenticated settings, empty private workspace and disabled docs passed.
+- GitHub and hosting access verified. Deployment credentials remain in ignored
+  .env.deploy. Existing Render services were inspected but not modified.
+- Render application services and public URLs are still pending source publication.

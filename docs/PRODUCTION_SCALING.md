@@ -1,0 +1,2 @@
+# Production Scaling
+At 100K users: move to paid autoscaled containers, managed connection pooling, background workers and queues for scheduled ingestion/embedding/report work, Redis for distributed cache/rate limiting, object storage, authentication/RBAC, encrypted backups, secrets manager, WAF, centralized metrics/logs/traces, HA database, job-source scheduler and dead-letter/retry strategy. Add Qdrant only if vector workload benchmarks justify a second persistence system.

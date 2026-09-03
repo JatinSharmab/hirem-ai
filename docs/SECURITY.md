@@ -1,0 +1,2 @@
+# Security
+Threats: PII leakage, secret exposure, prompt injection, SSRF, malformed uploads, unsafe redirects, SQL injection, abusive rate, dependency compromise and tool misuse. Controls include typed schemas, SQLAlchemy parameterization, upload signature/size validation, untrusted-data prompt boundaries, suspicious-instruction detection, public HTTP(S)-only URL policy, blocklists for local/private/link-local/metadata targets, bounded timeouts, tool allowlists, in-process demo throttling and HITL for consequential external actions. No compliance certification is claimed.

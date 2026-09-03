@@ -1,0 +1,12 @@
+weights:
+  required_skill_coverage: 0.30
+  relevant_evidence: 0.25
+  semantic_role_alignment: 0.15
+  responsibility_alignment: 0.10
+  experience_alignment: 0.10
+  preferred_skill_coverage: 0.05
+  location_work_mode: 0.05
+notes:
+  rationale: "Mandatory requirements and directly evidenced experience dominate the score."
+  limitations: "Weights are hand-calibrated for a portfolio demo, not learned from hiring outcomes."
+  calibration: "Tune against labeled matching cases; never relabel this as a commercial ATS score."

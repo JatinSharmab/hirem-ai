@@ -1,0 +1,2 @@
+# Matching Engine
+The **Career Fit Score** is HireMe AI's configurable, deterministic metric, not a commercial ATS score. Hard eligibility is evaluated separately. Default weights are loaded from `config/scoring.yaml`: required skills 30%, relevant evidence 25%, semantic role alignment 15%, responsibility alignment 10%, experience 10%, preferred skills 5%, location/work mode 5%. LLMs may explain a score but do not calculate it. Exact skill normalization remains authoritative; embeddings complement rather than replace exact matching.

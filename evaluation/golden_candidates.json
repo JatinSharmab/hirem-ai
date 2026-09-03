@@ -1,0 +1,5 @@
+[
+  {"id":"A","skills":["Python","RAG","FastAPI"]},
+  {"id":"B","skills":["React","JavaScript"]},
+  {"id":"C","skills":["Python","LangChain"]}
+]

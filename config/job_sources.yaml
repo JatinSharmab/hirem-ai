@@ -1,0 +1,16 @@
+sources:
+  greenhouse:
+    enabled: true
+    companies: []
+  lever:
+    enabled: true
+    companies: []
+  ashby:
+    enabled: true
+    organizations: []
+  workday:
+    enabled: false
+    note: "Enable only for tenants exposing a stable public endpoint."
+  protected_aggregators:
+    enabled: false
+    names: [LinkedIn, Naukri, Indeed, Glassdoor]

@@ -1,0 +1,5 @@
+[
+  {"candidate":"A","job":"1","expected_gap":"AWS","must_not_fabricate":"AWS"},
+  {"candidate":"B","job":"2","expected_low_match":true},
+  {"candidate":"C","job":"3","expected_gap":"LangGraph","related_evidence":"LangChain"}
+]

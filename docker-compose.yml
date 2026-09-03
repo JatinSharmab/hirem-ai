@@ -1,0 +1,18 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: hireme
+      POSTGRES_PASSWORD: hireme
+      POSTGRES_DB: hireme
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hireme -d hireme"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - hireme_pg:/var/lib/postgresql/data
+volumes:
+  hireme_pg:
