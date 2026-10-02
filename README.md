@@ -1,7 +1,8 @@
 # HireMe AI
 **Discover. Match. Tailor. Verify.**
 
-[Open the live website](https://hirem-ai.onrender.com) ·
+[Open the fast homepage](https://hirem-ai-portfolio.onrender.com) ·
+[Go directly to the workspace](https://hirem-ai.onrender.com) ·
 [CI checks](https://github.com/JatinSharmab/hirem-ai/actions) ·
 [Deployment and operations](docs/PUBLIC_DEPLOYMENT.md)
 
@@ -12,6 +13,11 @@ responsive layouts. Follow [the deployment guide](docs/PUBLIC_DEPLOYMENT.md) for
 local review, device checks and Render + Supabase setup. Hosted Gemini and database
 acceptance checks pass. Visual phone/iPad checks remain outstanding. Free hosting
 may need time to wake up after inactivity.
+
+The free static homepage opens independently and starts both app services in
+parallel while a visitor explores the project. Share the homepage link for a
+faster first impression. It does not remove the interactive app's free-hosting
+cold start. No always-on ping service or paid compute upgrade is configured.
 
 ## Start here: real Gemini / local live mode
 

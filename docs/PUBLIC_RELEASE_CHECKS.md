@@ -116,3 +116,10 @@ produces verified extracts. The hosting update below records the published relea
   and 1920x1080 found no horizontal overflow or JavaScript errors. Screenshots
   reviewed at phone, tablet and laptop sizes. No-JavaScript links and the timeout
   recovery screen passed. These are not physical iPad/iPhone Safari tests.
+- Published https://hirem-ai-portfolio.onrender.com as a Render static site.
+  GitHub CI passed 77 Python tests and five startup-script tests. The live
+  homepage appeared in about one second in a headless Edge check; both status
+  rewrites returned their expected responses and the workspace link opened the
+  real application. This was a warm-service check, not a cold-start benchmark.
+- Confirmed the original UI and API still use Free compute plans. The homepage
+  uses static hosting without a compute plan. No paid upgrade was performed.

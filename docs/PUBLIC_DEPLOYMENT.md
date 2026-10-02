@@ -36,6 +36,10 @@ The homepage source is `apps/landing/`. Its separate `render.landing.yaml` uses
 dependencies. Updates: push, wait for CI, then deploy the existing
 `hirem-ai-portfolio` static service. Keep both `/status/` rewrites and their
 `Cache-Control: no-store` header; do not replace them with a general API proxy.
+Rewritten responses can retain origin headers: the UI health endpoint sends
+`no-cache` (revalidate before reuse), and API readiness sends `no-store`. Browser
+checks also request `cache: no-store`; both live proxy paths were observed with
+CDN cache bypass.
 Do not create another Blueprint for an existing homepage.
 
 The Supabase hireme-ai project has been migrated and uses a dedicated application
