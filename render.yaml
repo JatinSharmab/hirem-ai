@@ -2,7 +2,7 @@
 services:
   - type: web
     name: hirem-ai-api
-    autoDeployTrigger: off
+    autoDeployTrigger: "off"
     runtime: python
     plan: free
     region: singapore
@@ -40,7 +40,7 @@ services:
         value: "24"
   - type: web
     name: hirem-ai
-    autoDeployTrigger: off
+    autoDeployTrigger: "off"
     runtime: python
     plan: free
     region: singapore
