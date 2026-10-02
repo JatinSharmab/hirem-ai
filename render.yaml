@@ -1,9 +1,10 @@
 # Two public web services; the backend accepts application traffic only from the UI gateway.
 services:
   - type: web
-    name: hireme-ai-api
+    name: hirem-ai-api
     runtime: python
     plan: free
+    region: singapore
     buildCommand: "pip install uv==0.12.22 && uv sync --frozen --no-dev"
     startCommand: "uv run --no-sync python scripts/serve_api.py"
     healthCheckPath: /ready
@@ -37,9 +38,10 @@ services:
       - key: WORKSPACE_TTL_HOURS
         value: "24"
   - type: web
-    name: hireme-ai-web
+    name: hirem-ai
     runtime: python
     plan: free
+    region: singapore
     buildCommand: "pip install -r apps/ui/requirements.txt"
     startCommand: "streamlit run apps/ui/Home.py --server.address 0.0.0.0 --server.port $PORT --server.headless true"
     healthCheckPath: /_stcore/health
@@ -53,5 +55,5 @@ services:
       - key: API_GATEWAY_KEY
         fromService:
           type: web
-          name: hireme-ai-api
+          name: hirem-ai-api
           envVarKey: API_GATEWAY_KEY

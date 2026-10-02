@@ -1,5 +1,23 @@
 # Public portfolio deployment
 
+## Existing deployment
+
+The GitHub repository is https://github.com/JatinSharmab/hirem-ai.
+Render services have already been provisioned in Singapore:
+
+- UI: https://hirem-ai.onrender.com
+- API: https://hirem-ai-api.onrender.com
+- [UI dashboard](https://dashboard.render.com/web/srv-davpmdm7bikc73f00lug)
+- [API dashboard](https://dashboard.render.com/web/srv-davpm5ou01pc73fm8u0g)
+
+The Supabase hireme-ai project has been migrated and uses a dedicated application
+login. Credentials are in the local ignored .env.deploy and Render environment;
+never commit that file. Certificate verification and database role isolation pass.
+The URLs above become usable when Render reports the deployments as live.
+Do not create another Blueprint for this installation. The steps below also serve
+as a fresh-install reference. For updates, push code, verify GitHub CI, then deploy
+the appropriate existing service from its Render dashboard.
+
 Current guide: 2026-10-02. This supersedes the earlier deployment notes and signup
 proposal. Visitors use isolated temporary workspaces without accounts. This is
 the current portfolio scope, not the complete original master prompt.
