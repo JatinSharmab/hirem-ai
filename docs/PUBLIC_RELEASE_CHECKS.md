@@ -51,12 +51,13 @@ tests completed successfully. Targeted security tests also passed with caching d
 
 The project remains a bounded portfolio experience. Temporary sessions have no
 recovery, the full master-prompt product is not implemented, and the export flow
-produces verified extracts. Hosting has not been provisioned or published.
+produces verified extracts. The hosting update below records the published release.
 
 ## Hosting preparation update - 2026-10-02
 
-- Public GitHub repository created: https://github.com/JatinSharmab/hirem-ai.
-  It remains empty pending the user's choice about preserving earlier commit history.
+- Public GitHub repository published: https://github.com/JatinSharmab/hirem-ai.
+  First commit is explicitly labeled as a retrospective import: its author date
+  is September 3, 2026, while its actual commit/upload occurred October 2, 2026.
 - Existing Supabase hireme-ai project selected by the user; it initially contained
   no public application tables. Created a dedicated hireme_app database login.
 - Verified the session pooler's TLS certificate and hostname using Supabase's
@@ -67,4 +68,14 @@ produces verified extracts. Hosting has not been provisioned or published.
   rejection, authenticated settings, empty private workspace and disabled docs passed.
 - GitHub and hosting access verified. Deployment credentials remain in ignored
   .env.deploy. Existing Render services were inspected but not modified.
-- Render application services and public URLs are still pending source publication.
+- Render services are live at https://hirem-ai.onrender.com and
+  https://hirem-ai-api.onrender.com. Both use free plans in Singapore.
+- Hosted synthetic acceptance checks passed: Gemini profile/JD extraction,
+  verified resume generation, PDF/DOCX exports, application persistence, isolation
+  between visitors and workspace deletion. This used three Gemini calls; synthetic
+  test records were removed. No real personal resume was used.
+- Public Streamlit pages executed successfully against the hosted API using AppTest;
+  local configuration controls are hidden and deletion requires confirmation.
+- GitHub CI passed for the initial source and hosting configuration commits.
+- Actual visual phone/iPad/Safari checks, traffic load testing, a dependency audit,
+  and recovery from a hosted backup remain separate follow-up checks.

@@ -13,7 +13,11 @@ Render services have already been provisioned in Singapore:
 The Supabase hireme-ai project has been migrated and uses a dedicated application
 login. Credentials are in the local ignored .env.deploy and Render environment;
 never commit that file. Certificate verification and database role isolation pass.
-The URLs above become usable when Render reports the deployments as live.
+Both services are live. Hosted acceptance checks passed on October 2, 2026:
+Gemini profile/JD extraction, verified resume creation, PDF/DOCX export, application
+storage, visitor isolation and deletion. Three Gemini requests used only synthetic
+data; the test workspace was deleted. Public-page script checks also passed against
+the hosted API. These are not visual browser or physical-device checks.
 Do not create another Blueprint for this installation. The steps below also serve
 as a fresh-install reference. For updates, push code, verify GitHub CI, then deploy
 the appropriate existing service from its Render dashboard.
@@ -131,7 +135,7 @@ On the assigned backend HTTPS URL check:
 - /api/v1/settings without gateway credentials: 401, intentionally.
 - Production docs/OpenAPI are disabled.
 
-Hosted TLS/migrations have not been tested by the local review.
+Hosted TLS/migrations and production startup were verified for this deployment.
 
 ## 7. Deploy and verify the UI
 

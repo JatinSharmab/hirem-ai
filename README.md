@@ -1,12 +1,17 @@
 # HireMe AI
 **Discover. Match. Tailor. Verify.**
 
+[Open the live website](https://hirem-ai.onrender.com) ·
+[CI checks](https://github.com/JatinSharmab/hirem-ai/actions) ·
+[Deployment and operations](docs/PUBLIC_DEPLOYMENT.md)
+
 ## Public portfolio release
 
 The site supports anonymous workspaces without signup, bounded live AI usage and
 responsive layouts. Follow [the deployment guide](docs/PUBLIC_DEPLOYMENT.md) for
-local review, device checks and Render + Supabase setup. Hosted and visual device
-checks remain release gates.
+local review, device checks and Render + Supabase setup. Hosted Gemini and database
+acceptance checks pass. Visual phone/iPad checks remain outstanding. Free hosting
+may need time to wake up after inactivity.
 
 ## Start here: real Gemini / local live mode
 
