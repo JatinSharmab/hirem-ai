@@ -99,3 +99,20 @@ produces verified extracts. The hosting update below records the published relea
   HTML loading pages, timeouts, retry limits, preserved workspace identity,
   reload recovery and saving reviewed facts. Ruff lint and formatting pass.
 - These changes improve recovery; they do not make free services always-on.
+
+## Free static entry page - 2026-10-02
+
+- Added an independent HTML/CSS/JavaScript homepage in `apps/landing`, with a
+  separate static-service configuration in `render.landing.yaml`. Existing UI,
+  API, database, credentials and compute plans are unchanged.
+- The page starts both existing services with concurrent read-only health checks
+  during a visible visit. No scheduled pings or AI requests are made. Readiness
+  requires the expected response bodies; HTML loading screens are not accepted.
+- Checks stop on success or a two-minute budget, and are aborted while hidden.
+  Direct workspace links remain available if startup fails or JavaScript is off.
+- Five Node regression tests cover concurrent startup, malformed/gateway replies,
+  successful recovery, bounded retries, background-tab cancellation and timeout.
+- Headless Edge layout checks at 360x800, 390x844, 768x1024, 1024x768, 1366x768
+  and 1920x1080 found no horizontal overflow or JavaScript errors. Screenshots
+  reviewed at phone, tablet and laptop sizes. No-JavaScript links and the timeout
+  recovery screen passed. These are not physical iPad/iPhone Safari tests.

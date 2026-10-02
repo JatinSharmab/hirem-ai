@@ -10,6 +10,34 @@ Render services have already been provisioned in Singapore:
 - [UI dashboard](https://dashboard.render.com/web/srv-davpmdm7bikc73f00lug)
 - [API dashboard](https://dashboard.render.com/web/srv-davpm5ou01pc73fm8u0g)
 
+### Fast, free public homepage
+
+Share https://hirem-ai-portfolio.onrender.com as the entry point. Its static files
+are served independently of the sleeping Python services. The original app link
+above remains available and all workspace links point to the real application.
+
+On a visible visit, the homepage checks both public health endpoints concurrently
+through two fixed same-origin rewrites. This starts the UI and API together,
+instead of making the visitor wait for the UI before the API starts. A ready
+indicator requires the expected health response, not just an HTTP 200 loading
+page. Checks stop after success, after two minutes, or while the page is hidden.
+The visitor can explicitly retry. No keys, profiles or AI requests are involved.
+
+The page itself has no cold start, but the interactive application can still
+take about a minute or longer after inactivity. This is not an always-on service
+or a guarantee of instant AI results. There is no scheduled keep-alive service.
+Both Python services remain on Free; a static site does not use their instance
+hours. Static delivery still counts toward Render's bandwidth/build allowances.
+See [Render static sites](https://render.com/docs/static-sites) and
+[free-plan limits](https://render.com/docs/free).
+
+The homepage source is `apps/landing/`. Its separate `render.landing.yaml` uses
+`runtime: static`, root directory `apps/landing`, publish path `.`, and no build
+dependencies. Updates: push, wait for CI, then deploy the existing
+`hirem-ai-portfolio` static service. Keep both `/status/` rewrites and their
+`Cache-Control: no-store` header; do not replace them with a general API proxy.
+Do not create another Blueprint for an existing homepage.
+
 The Supabase hireme-ai project has been migrated and uses a dedicated application
 login. Credentials are in the local ignored .env.deploy and Render environment;
 never commit that file. Certificate verification and database role isolation pass.

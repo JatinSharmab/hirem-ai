@@ -1,0 +1,32 @@
+# Independent free static entry page. Does not replace either existing app service.
+services:
+  - type: web
+    name: hirem-ai-portfolio
+    runtime: static
+    autoDeployTrigger: "off"
+    rootDir: apps/landing
+    buildCommand: "true"
+    staticPublishPath: .
+    routes:
+      - type: rewrite
+        source: /status/ui
+        destination: https://hirem-ai.onrender.com/_stcore/health
+      - type: rewrite
+        source: /status/api
+        destination: https://hirem-ai-api.onrender.com/ready
+    headers:
+      - path: /*
+        name: Content-Security-Policy
+        value: "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'"
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /status/*
+        name: Cache-Control
+        value: no-store
