@@ -5,8 +5,17 @@ import streamlit as st
 from client.view import call
 
 
+def configure_page(title: str) -> None:
+    """Apply the page shell before any network operation can stop rendering."""
+    st.set_page_config(page_title=f"{title} · HireMe AI", page_icon="✦", layout="wide")
+    css = (Path(__file__).resolve().parents[1] / "styles.css").read_text(encoding="utf-8")
+    st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
+
+
 def setup(title: str, subtitle: str, step: str = "") -> None:
-    runtime = call("GET", "/api/v1/settings")
+    configure_page(title)
+    with st.spinner("Connecting to your workspace. The first visit may take about a minute..."):
+        runtime = call("GET", "/api/v1/settings")
     previous = st.session_state.get("runtime", {}).get("mode")
     if previous and previous != runtime["mode"]:
         for key in [
@@ -20,9 +29,6 @@ def setup(title: str, subtitle: str, step: str = "") -> None:
         ]:
             st.session_state.pop(key, None)
     st.session_state["runtime"] = runtime
-    st.set_page_config(page_title=f"{title} · HireMe AI", page_icon="✦", layout="wide")
-    css = (Path(__file__).resolve().parents[1] / "styles.css").read_text(encoding="utf-8")
-    st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
     with st.sidebar:
         st.markdown("## ✦ HireMe AI")
         st.caption("YOUR CAREER WORKSPACE")

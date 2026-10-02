@@ -54,6 +54,8 @@ def test_ui_demo_pages() -> None:
         profile.switch_page("pages/1_Candidate_Profile.py").run()
         next(b for b in profile.button if b.label == "Try Demo Candidate").click().run()
         assert not profile.exception
+        next(b for b in profile.button if b.label == "Save reviewed facts").click().run()
+        assert not profile.exception
         candidate = profile.session_state["candidate"]
         for filename in [
             "2_Job_Discovery.py",

@@ -2,25 +2,43 @@ import os
 
 import httpx
 import streamlit as st
-from client.api import HireMeAPI
+from client.api import HireMeAPI, ServiceUnavailableError
+
+UNAVAILABLE_MESSAGE = (
+    "The service is starting or temporarily unavailable. "
+    "On free hosting, the first visit after inactivity can take about a minute. "
+    "Please wait a moment, then reload this page."
+)
 
 
 def call(method: str, path: str, **kwargs):
     try:
         return HireMeAPI().request(method, path, **kwargs)
     except httpx.HTTPStatusError as exc:
+        fallback = (
+            UNAVAILABLE_MESSAGE
+            if exc.response.status_code in (502, 503, 504)
+            else "The request could not be completed. Please check your input."
+        )
         try:
-            detail = exc.response.json().get("detail", "Request failed.")
+            body = exc.response.json()
+            detail = body.get("detail") if isinstance(body, dict) else None
+            if not isinstance(detail, str):
+                detail = fallback
         except ValueError:
-            detail = "The server returned an unreadable error response."
+            detail = fallback
         st.error(f"{detail} (HTTP {exc.response.status_code})")
+    except ServiceUnavailableError:
+        st.warning(UNAVAILABLE_MESSAGE)
     except httpx.RequestError:
         if os.getenv("APP_ENV") == "production":
-            st.error("The service is waking up or temporarily unavailable. Please retry shortly.")
+            st.warning(UNAVAILABLE_MESSAGE)
         else:
             st.error("Cannot reach the API. Start the backend on port 8000 and try again.")
     except ValueError:
         st.error("The service configuration needs attention. Please contact the site owner.")
+    if st.button("Reload page", key="reload_after_api_error"):
+        st.rerun()
     st.stop()
 
 

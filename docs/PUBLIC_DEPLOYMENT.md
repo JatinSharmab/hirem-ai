@@ -147,6 +147,31 @@ controls are intentionally hidden on the public UI.
 
 ## 8. Operate the portfolio
 
+### If every page reports HTTP 502 or the first visit is slow
+
+Render Free services sleep after 15 minutes without incoming traffic. The UI and
+API wake independently, so the UI can be available before the API is ready.
+See [Render's spin-down behavior](https://render.com/docs/free#spinning-down-on-idle).
+The UI displays a connection message and retries only the read-only settings
+request for up to approximately 90 seconds. If startup still fails, use the
+**Reload page** button after a short wait. Do not repeatedly submit uploads or AI
+actions; these are deliberately not retried automatically.
+
+If the error persists, open the API's `/health` and `/ready` URLs above. A ready
+response confirms the database and migration check passed. Look at the API's
+Render logs if either remains unavailable: check for startup failures, database
+connection errors or a suspended service. A 401 from settings opened directly in
+your browser is expected because the gateway credential is server-side. Do not
+change Gemini keys to fix a hosting gateway error. Persistent Gemini failures
+return a separate, specific API message.
+
+The recovery UI handles temporary failures; it does not remove free-plan sleep.
+For predictable first-visit availability, upgrade both existing web services to
+always-on paid instances after reviewing the cost in Render. No plan upgrade is
+performed automatically.
+
+### Data and maintenance
+
 Sessions use random identifiers, not recoverable accounts. Closing/reloading or
 reconnecting may start a fresh workspace. Save downloads before leaving. Profiles
 and previews stay in session memory. Jobs/applications expire in PostgreSQL and

@@ -79,3 +79,23 @@ produces verified extracts. The hosting update below records the published relea
 - GitHub CI passed for the initial source and hosting configuration commits.
 - Actual visual phone/iPad/Safari checks, traffic load testing, a dependency audit,
   and recovery from a hosted backup remain separate follow-up checks.
+
+## Cold-start recovery fix - 2026-10-02
+
+- Investigated an all-pages HTTP 502 report. Render logs show the API shutting
+  down at 12:22 UTC and starting again at 13:17 UTC. Initial external requests
+  timed out; after startup, health, readiness and authenticated settings returned
+  HTTP 200. Both services remained on their existing free plans.
+- The UI previously stopped before applying its styles whenever the initial
+  settings request failed. It now styles the page first, displays a connection
+  message, and retries transient failures on that read-only settings endpoint
+  within a roughly 90-second window. A reload button handles longer outages.
+- AI requests, uploads, mutations and requirement-extraction GET requests are
+  never automatically retried. Authorization failures and quota rejections are
+  not retried. Specific JSON error messages from the API remain visible.
+- Fixed an independently observed profile-review crash: a plain checkmark was
+  rejected as a toast emoji. It now uses a supported Material icon.
+- Local validation: 77 tests pass, including simulated 502/503/504 responses,
+  HTML loading pages, timeouts, retry limits, preserved workspace identity,
+  reload recovery and saving reviewed facts. Ruff lint and formatting pass.
+- These changes improve recovery; they do not make free services always-on.

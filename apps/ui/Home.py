@@ -1,8 +1,11 @@
 import streamlit as st
+from client.design import configure_page
 from client.view import call
 from dashboard import dashboard
 
-runtime = call("GET", "/api/v1/settings")
+configure_page("Your career workspace")
+with st.spinner("Connecting to your workspace. The first visit may take about a minute..."):
+    runtime = call("GET", "/api/v1/settings")
 workspace = [
     st.Page(dashboard, title="Overview", icon=":material/home:", default=True),
     st.Page("pages/1_Candidate_Profile.py", title="Your profile", icon=":material/person:"),

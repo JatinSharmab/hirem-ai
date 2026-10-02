@@ -91,7 +91,7 @@ if "candidate" in st.session_state:
         )
         if st.button("Save reviewed facts", type="primary"):
             candidate["facts"] = reviewed
-            st.toast("Evidence review saved", icon="✓")
+            st.toast("Evidence review saved", icon=":material/check_circle:")
             st.rerun()
     with ledger:
         st.write(
