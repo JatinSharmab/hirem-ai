@@ -14,3 +14,11 @@ artifacts/
 .tools/
 
 .streamlit/secrets.toml
+node_modules/
+.next/
+.vercel/
+*.tsbuildinfo
+playwright-report/
+test-results/
+frontend/.env.local
+frontend/.env.*.local

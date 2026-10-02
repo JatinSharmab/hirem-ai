@@ -6,7 +6,19 @@
 [CI checks](https://github.com/JatinSharmab/hirem-ai/actions) ·
 [Deployment and operations](docs/PUBLIC_DEPLOYMENT.md)
 
-## Public portfolio release
+## Next.js migration
+
+The new interface is in `frontend/`: Next.js, TypeScript, React and Tailwind,
+with a private server-side BFF to the existing FastAPI backend. Local production
+build and live-backend acceptance pass. Vercel publication still requires account
+access; the links above remain the current public fallback.
+
+- [Run locally and deploy to Vercel](docs/NEXTJS_MIGRATION.md)
+- [Feature/API migration matrix](docs/MIGRATION_MATRIX.md)
+- [Validation and remaining release gates](docs/FRONTEND_VALIDATION.md)
+- [Simple-language interview guide](docs/FRONTEND_INTERVIEW_GUIDE.md)
+
+## Existing Streamlit portfolio release (fallback)
 
 The site supports anonymous workspaces without signup, bounded live AI usage and
 responsive layouts. Follow [the deployment guide](docs/PUBLIC_DEPLOYMENT.md) for
@@ -39,8 +51,8 @@ Agentic Career Intelligence project. It does **not yet implement the full master
 The original prompt used Aptivara; this repository keeps your chosen name, HireMe AI.
 
 Read [the audit and next steps](docs/VALIDATION_AND_NEXT_STEPS.md) before deployment.
-Architecture documents describe the intended system; the audit distinguishes it from
-the code that is currently connected.
+The current architecture document describes the connected workflow and explicitly
+separates graph/vector scaffolding from live functionality.
 
 ## Run locally on this Windows machine
 

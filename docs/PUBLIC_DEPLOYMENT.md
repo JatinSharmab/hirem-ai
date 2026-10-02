@@ -1,5 +1,11 @@
 # Public portfolio deployment
 
+> **Next.js migration, October 3, 2026:** use [NEXTJS_MIGRATION.md](NEXTJS_MIGRATION.md)
+> for the new frontend, Vercel environment setup and release gates. The existing
+> Render links below remain the fallback until hosted Vercel acceptance passes.
+> The new frontend has been tested locally against the live Render API; this does
+> not yet mean a Vercel deployment has been published.
+
 ## Existing deployment
 
 The GitHub repository is https://github.com/JatinSharmab/hirem-ai.

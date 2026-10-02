@@ -12,3 +12,5 @@ __pycache__
 *.dump
 *.log
 artifacts
+frontend
+tmp

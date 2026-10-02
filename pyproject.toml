@@ -43,7 +43,7 @@ testpaths = ["tests"]
 addopts = "-q"
 
 [tool.ruff]
-extend-exclude = [".tools"]
+extend-exclude = [".tools", "frontend/node_modules", "frontend/.next"]
 line-length = 100
 target-version = "py312"
 
