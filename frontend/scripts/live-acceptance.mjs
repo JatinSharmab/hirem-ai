@@ -8,7 +8,7 @@ if (process.env.ALLOW_LIVE_AI !== "1")
     "Set ALLOW_LIVE_AI=1 to authorize the synthetic live acceptance requests.",
   );
 const base = process.env.ACCEPTANCE_URL || "http://127.0.0.1:3000";
-const artifacts = "artifacts/live";
+const artifacts = process.env.ACCEPTANCE_ARTIFACT_DIR || "artifacts/live";
 await mkdir(artifacts, { recursive: true });
 const results = [];
 function pass(name) {
@@ -55,6 +55,23 @@ const context = await browser.newContext({
   acceptDownloads: true,
 });
 const other = await browser.newContext();
+// Restrict preview authentication to the tested origin; never send it to ATS links.
+const bypass = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
+if (bypass) {
+  for (const session of [context, other]) {
+    await session.route("**/*", async (route) => {
+      const request = route.request();
+      if (new URL(request.url()).origin !== new URL(base).origin)
+        return route.continue();
+      await route.continue({
+        headers: {
+          ...request.headers(),
+          "x-vercel-protection-bypass": bypass,
+        },
+      });
+    });
+  }
+}
 const page = await context.newPage();
 const second = await other.newPage();
 page.setDefaultTimeout(110000);
@@ -398,6 +415,8 @@ try {
       2,
     ),
   );
+  if (results.some((result) => result.status === "failed"))
+    process.exitCode = 1;
   console.log(`Acceptance report: ${artifacts}/results.json`);
   await browser.close();
 }

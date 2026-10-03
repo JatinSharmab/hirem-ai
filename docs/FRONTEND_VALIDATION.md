@@ -85,11 +85,14 @@ The script now writes to ignored `frontend/artifacts/live/` so later Playwright 
 - Prevented late client responses from restoring cleared profile/match/version state.
 - Retained compatible TypeScript 5.9 for OpenAPI generation. ESLint 10 failed the current Next.js React plugin; ESLint 9.39.5 is pinned until that plugin supports the newer API. This is a development-tool maintenance item, not a reason to force an incompatible install.
 
-## Remaining release gates
+## Vercel release completed
 
-- Vercel account authentication/token, preview creation and preview acceptance.
-- Production Vercel environment/origin/domain confirmation, deployment and hosted acceptance.
-- Exact Render frontend/CORS origin update once the Vercel URL exists; BFF server-to-server calls already work independently of browser CORS.
+The public website is **https://hireme-ai-tau.vercel.app**. The initial production deployment URL, protected preview and public production domain each passed **25 live checks**. The latter two ran after the Render origin update. All synthetic records were cleaned up.
+
+Nine public pages passed layout checks at all six sizes above (**54 checks**). Another **36 public-domain checks** covered HTML delivery, headers, cookies, request boundaries and the JavaScript credential scan. Preview cookies were rejected by production. Render health, database readiness and the exact configured frontend origin were confirmed after redeployment. The temporary preview automation bypass was revoked. See [VERCEL_RELEASE.md](VERCEL_RELEASE.md) for the actual rollout and operating steps.
+
+## Remaining fallback-retirement gates
+
 - Acceptance of the documented 4 MiB frontend upload difference and physical Safari checks before Streamlit retirement.
 
 No paid hosting was enabled. No Render service was suspended or deleted. See [deployment steps](NEXTJS_MIGRATION.md) and [feature limits](MIGRATION_MATRIX.md).

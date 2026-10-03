@@ -1,8 +1,8 @@
 # HireMe AI
 **Discover. Match. Tailor. Verify.**
 
-[Open the fast homepage](https://hirem-ai-portfolio.onrender.com) ·
-[Go directly to the workspace](https://hirem-ai.onrender.com) ·
+[Open HireMe AI](https://hireme-ai-tau.vercel.app) ·
+[Legacy Streamlit fallback](https://hirem-ai.onrender.com) ·
 [CI checks](https://github.com/JatinSharmab/hirem-ai/actions) ·
 [Deployment and operations](docs/PUBLIC_DEPLOYMENT.md)
 
@@ -10,8 +10,9 @@
 
 The new interface is in `frontend/`: Next.js, TypeScript, React and Tailwind,
 with a private server-side BFF to the existing FastAPI backend. Local production
-build and live-backend acceptance pass. Vercel publication still requires account
-access; the links above remain the current public fallback.
+build and live-backend acceptance pass. The public Next.js website is hosted on
+Vercel Hobby, with FastAPI on Render Free and the existing Supabase database.
+See the [deployed-site guide](docs/VERCEL_RELEASE.md) for URLs, checks and updates.
 
 - [Run locally and deploy to Vercel](docs/NEXTJS_MIGRATION.md)
 - [Feature/API migration matrix](docs/MIGRATION_MATRIX.md)
@@ -26,10 +27,10 @@ local review, device checks and Render + Supabase setup. Hosted Gemini and datab
 acceptance checks pass. Visual phone/iPad checks remain outstanding. Free hosting
 may need time to wake up after inactivity.
 
-The free static homepage opens independently and starts both app services in
-parallel while a visitor explores the project. Share the homepage link for a
-faster first impression. It does not remove the interactive app's free-hosting
-cold start. No always-on ping service or paid compute upgrade is configured.
+The older [static homepage](https://hirem-ai-portfolio.onrender.com) remains available
+for the fallback. Share the Vercel link above for the new interface. Its page shells
+load independently of Render; data and AI actions can still wait for the backend
+to wake. No always-on ping service or paid compute upgrade is configured.
 
 ## Start here: real Gemini / local live mode
 

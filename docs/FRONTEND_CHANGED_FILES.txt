@@ -72,3 +72,11 @@ frontend/types/index.ts
 frontend/vercel.json
 frontend/vitest.config.ts
 pyproject.toml
+
+Vercel publication follow-up (October 3, 2026):
+README.md
+docs/FRONTEND_VALIDATION.md
+docs/NEXTJS_MIGRATION.md
+docs/PUBLIC_DEPLOYMENT.md
+docs/VERCEL_RELEASE.md
+frontend/scripts/live-acceptance.mjs

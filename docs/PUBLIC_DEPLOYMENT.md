@@ -1,10 +1,9 @@
 # Public portfolio deployment
 
-> **Next.js migration, October 3, 2026:** use [NEXTJS_MIGRATION.md](NEXTJS_MIGRATION.md)
-> for the new frontend, Vercel environment setup and release gates. The existing
-> Render links below remain the fallback until hosted Vercel acceptance passes.
-> The new frontend has been tested locally against the live Render API; this does
-> not yet mean a Vercel deployment has been published.
+> **Current public website:** https://hireme-ai-tau.vercel.app
+> Read [VERCEL_RELEASE.md](VERCEL_RELEASE.md) for the deployed-site guide, and
+> [NEXTJS_MIGRATION.md](NEXTJS_MIGRATION.md) for local setup and architecture.
+> The Render services below remain the backend and legacy fallback.
 
 ## Existing deployment
 
@@ -18,7 +17,8 @@ Render services have already been provisioned in Singapore:
 
 ### Fast, free public homepage
 
-Share https://hirem-ai-portfolio.onrender.com as the entry point. Its static files
+The legacy static entry point is https://hirem-ai-portfolio.onrender.com.
+Share the Vercel website above for the current interface. Its static files
 are served independently of the sleeping Python services. The original app link
 above remains available and all workspace links point to the real application.
 

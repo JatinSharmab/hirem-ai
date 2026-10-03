@@ -1,6 +1,6 @@
 # HireMe AI — frontend migration and deployment guide
 
-Current review date: **October 3, 2026**. The new application lives in `frontend/`. It preserves the existing FastAPI/Render, Supabase PostgreSQL and Gemini implementation. The existing public Streamlit app and static homepage remain the fallback until Vercel preview and production acceptance pass.
+Current review date: **October 3, 2026**. The new application lives in `frontend/`. It preserves the existing FastAPI/Render, Supabase PostgreSQL and Gemini implementation. The public Next.js site is https://hireme-ai-tau.vercel.app. The existing Streamlit app and static homepage remain available while physical Safari checks and the documented upload-limit cutover decision are outstanding. See [the deployed-site guide](VERCEL_RELEASE.md).
 
 ## 1. Architecture and workflow
 
@@ -133,7 +133,7 @@ No paid upgrade is required for this personal non-commercial portfolio, subject 
 10. Update public README/portfolio links only after success. A later custom domain is added in Vercel Settings → Domains; follow its actual DNS instructions, then update the exact site origin and public URL and redeploy.
 11. Keep the legacy Streamlit site available until the 4 MiB upload difference is accepted, physical-device checks are complete, and no required public workflow regresses. Suspending the old service is a separate final cutover action; do not delete its code or data during migration.
 
-The project is deployment-ready in source. **Vercel publication cannot be completed without an authenticated Vercel account/token.** The existing Render API is not replaced while waiting for access.
+The Vercel project is now created in the existing Personal Hobby workspace and linked to GitHub, using the settings above. Credentials were installed privately. The canonical production URL is **https://hireme-ai-tau.vercel.app**. Render remains the Python backend. See [VERCEL_RELEASE.md](VERCEL_RELEASE.md) for this release and later deployment steps.
 
 ## 7. Render and CORS
 
@@ -190,11 +190,13 @@ $env:ACCEPTANCE_URL = 'http://127.0.0.1:3000' # or the authorized preview/produc
 npm run acceptance:live
 ```
 
+For a protected preview, supply `VERCEL_AUTOMATION_BYPASS_SECRET` privately to the test process. The script attaches it only to that exact preview origin. Do not use a `NEXT_PUBLIC_` variable. Set `ACCEPTANCE_ARTIFACT_DIR` to separate reports from different targets.
+
 This deliberately uses three real Gemini calls and three ATS calls. It uses synthetic resume data, verifies downloads and isolation, and deletes its test records. It does not run automatically in CI. Results/screenshots are in ignored `frontend/artifacts/live/`. Error injection for database failures, quota, provider timeouts and hostile cookies uses mocks; do not take the public database offline to manufacture a test.
 
 ## 10. Acceptance and release status
 
-See [FRONTEND_VALIDATION.md](FRONTEND_VALIDATION.md) for exact results, failures corrected and remaining hosted/device checks. GitHub CI independently runs backend quality/storage checks and the frontend build, tests and browser suite. A passing local build is not a claim that a Vercel deployment exists.
+See [FRONTEND_VALIDATION.md](FRONTEND_VALIDATION.md) for exact results, failures corrected and remaining hosted/device checks. GitHub CI independently runs backend quality/storage checks and the frontend build, tests and browser suite. The hosted release and its separate public-domain checks are recorded in [VERCEL_RELEASE.md](VERCEL_RELEASE.md).
 
 ## 11. Security decisions
 
